@@ -1,0 +1,12 @@
+.devise-title {
+  margin-bottom: 16px;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.alert-notice {
+  @extend .alert-success;
+}
+
