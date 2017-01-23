@@ -1,42 +1,24 @@
-class Forecast::Builder
-  DAILYKEYS = {
-    "WINDSPD" => :wind_speed,
-    "WINDDIR" => :wind_direction,
-    "GUST" => :gust,
-    "TMP" => :temperature,
-    "APCP" => :rain,
-    "hr_weekday" => :weekday,
-    "hr_h" => :hour,
-    "hr_d" => :day
-  }
+module Forecast::Builder
+  include Forecast::Config
 
-  COMMONKEYS = {
-    "model_name" => :model_name,
-    "update_last" => :last_update,
-    "update_next" => :next_update,
-    "init_d" => :initial_date
-  }
+  def build(models)
+    models.map do |data|
+      days = data[DAILYKEYS.first.first].size
+      common = common_info(data)
 
-  ALLKEYS = DAILYKEYS.merge(COMMONKEYS)
-
-  def initialize(info)
-    @data = info
-  end
-
-  def build
-    days = @data[DAILYKEYS.first.first].size
-
-    (0...days).map do |day|
-      daily_info(day).merge(common_info)
+      (0...days).map do |day|
+        daily = daily_info(data, day)
+        daily.merge(common)
+      end
     end
   end
 
   private
-  def daily_info(day)
-    DAILYKEYS.map { |old_key, new_key| [new_key, @data[old_key][day]] }.to_h
+  def daily_info(data, day)
+    DAILYKEYS.map { |old_key, new_key| [new_key, data[old_key][day]] }.to_h
   end
 
-  def common_info
-    COMMONKEYS.map { |old_key, new_key| [new_key, @data[old_key]]}.to_h
+  def common_info(data)
+    COMMONKEYS.map { |old_key, new_key| [new_key, data[old_key]]}.to_h
   end
 end
