@@ -6,7 +6,7 @@ h2, h3, h4, h5 {
   font-family: "Oswald", Verdana, Arial, sans-serif
 }
 
-a.navbar-brand {
+.navbar .navbar-brand {
   font-size: 60px;
   font-family: 'Lobster Two', sans-serif;
   text-decoration: none;
@@ -26,4 +26,21 @@ a.navbar-brand {
 .field_with_errors {
   @extend .has-danger;
   display: inline;
+}
+
+a.no-decoration {
+  @extend .btn-link;
+  @extend .text-muted;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.alert-notice {
+  @extend .alert-info;
 }

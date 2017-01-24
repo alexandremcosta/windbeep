@@ -1,0 +1,15 @@
+<%= form_for(spot_creator, url: user_spots_path) do |f| %>
+  <h4>Paste a Windguru spot to track</h4>
+
+  <div class="form-group">
+    <%= f.text_field :url, placeholder: "Windguru URL", class: "form-control" %>
+    <small class="form-text <%= f.object.errors.any? ? "text-danger" : "text-muted" %>">
+      example: https://www.windguru.cz/261810
+    </small>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create beep", class: "btn btn-primary" %>
+  </div>
+<% end %>
+

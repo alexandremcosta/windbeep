@@ -6,5 +6,9 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    authenticate_user!
+
+    @spot_creator = Spot::Creator.new
+    @user_spots = current_user.user_spots
   end
 end

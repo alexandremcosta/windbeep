@@ -1,4 +1,6 @@
 module Forecast::Config
+  URLREGEX = /windguru\.cz\/(\d{6})/
+
   DAILYKEYS = {
     "WINDSPD" => :wind_speed,
     "WINDDIR" => :wind_direction,
