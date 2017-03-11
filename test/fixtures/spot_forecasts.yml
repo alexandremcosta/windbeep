@@ -6,7 +6,7 @@ one:
   wind_direction: 1
   temperature: 9.99
   start_at: 2017-01-24 15:15:20
-  model_name: MyString
+  model: MyString
 
 two:
   wind_speed: 9.99
@@ -14,4 +14,4 @@ two:
   wind_direction: 1
   temperature: 9.99
   start_at: 2017-01-24 15:15:20
-  model_name: MyString
+  model: MyString
