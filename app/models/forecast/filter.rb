@@ -5,12 +5,10 @@ module Forecast::Filter
   include Forecast::Config
 
   def filter(html)
-    forecasts = find_js_data(html)
-    forecasts.map do |tab|
-      filter_data(parse(tab))
-    end.select do |forecast|
-      forecast["model_name"] =~ /(GFS|WRF)/i
-    end
+    tabs = find_js_data(html)
+    tabs = tabs.map { |tab| filter_data(parse(tab)) }
+
+    most_accurate(tabs) || Hash.new
   end
 
   private
@@ -30,5 +28,27 @@ module Forecast::Filter
 
   def relevant_keys
     ALLKEYS.keys
+  end
+
+  def most_accurate(tabs)
+    tabs
+      .select { |tab| String(tab["model_name"]) =~ MODELNAMEREGEX }
+      .sort { |one, other| compare_accuracy(one, other) }
+      .first
+  end
+
+  def compare_accuracy(one, other)
+    return 0 unless other
+
+    one["model_name"] =~ MODELNAMEREGEX
+    one_model = $1
+    one_distance = $2.to_i
+
+    other["model_name"] =~ MODELNAMEREGEX
+    other_model = $1
+    other_distance = $2.to_i
+
+    return one_distance <=> other_distance if one_model == other_model
+    one_model == 'WRF' ? -1 : 1
   end
 end

@@ -2,13 +2,13 @@ module Forecast
   extend Forecast::Filter
   extend Forecast::Builder
 
-  def self.find(spot_id)
-    html   = open("https://www.windguru.cz/" + spot_id).read
-    models = filter(html)
-    models = build(models)
+  def self.find(spot_code)
+    html     = open("https://www.windguru.cz/" + spot_code).read
+    raw_data = filter(html)
+    entries  = build(raw_data)
 
-    models.map do |attributes|
-      attributes.map { |attrs| Forecast::Entry.new(attrs) }
+    entries.map do |attrs|
+      Forecast::Entry.new(attrs)
     end
   end
 end

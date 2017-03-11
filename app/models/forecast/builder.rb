@@ -1,15 +1,15 @@
 module Forecast::Builder
   include Forecast::Config
 
-  def build(models)
-    models.map do |data|
-      days = data[DAILYKEYS.first.first].size
-      common = common_info(data)
+  def build(data)
+    return [] if data.empty?
 
-      (0...days).map do |day|
-        daily = daily_info(data, day)
-        daily.merge(common)
-      end
+    days = data[DAILYKEYS.first.first].size
+    common = common_info(data)
+
+    (0...days).map do |day|
+      daily = daily_info(data, day)
+      daily.merge(common)
     end
   end
 

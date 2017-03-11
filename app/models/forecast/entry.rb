@@ -8,6 +8,7 @@ class Forecast::Entry
     time_keys = [:day, :hour, :initial_date]
     attrs.except(*time_keys).each { |k,v| create_method(k) { v } }
     create_method(:time) { parse_time(attrs.slice(*time_keys)) }
+    create_method(:attributes) { attrs.slice(*Forecast::Config::INFOATTRIBUTES) }
   end
 
   def create_method(name, &block)

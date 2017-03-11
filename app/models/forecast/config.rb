@@ -1,4 +1,5 @@
 module Forecast::Config
+  MODELNAMEREGEX = /(GFS|WRF)\s*(\d+)\s*KM/i
   URLREGEX = /windguru\.cz\/(\d{6})/
 
   DAILYKEYS = {
@@ -11,11 +12,13 @@ module Forecast::Config
   }
 
   COMMONKEYS = {
-    "model_name" => :model_name,
+    "model_name" => :model,
     "update_last" => :last_update,
     "update_next" => :next_update,
     "init_d" => :initial_date
   }
 
   ALLKEYS = DAILYKEYS.merge(COMMONKEYS)
+
+  INFOATTRIBUTES = [:wind_speed, :wind_direction, :wind_gust, :temperature, :model]
 end
