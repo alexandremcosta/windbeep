@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123222858) do
+ActiveRecord::Schema.define(version: 20170124171520) do
+
+  create_table "spot_forecasts", force: :cascade do |t|
+    t.decimal  "wind_speed"
+    t.decimal  "wind_gust"
+    t.integer  "wind_direction"
+    t.decimal  "temperature"
+    t.string   "model"
+    t.datetime "start_at"
+    t.integer  "spot_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["spot_id"], name: "index_spot_forecasts_on_spot_id"
+  end
 
   create_table "spots", force: :cascade do |t|
     t.string   "code"

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wind_speed: 9.99
+  wind_gust: 9.99
+  wind_direction: 1
+  temperature: 9.99
+  start_at: 2017-01-24 15:15:20
+  model_name: MyString
+
+two:
+  wind_speed: 9.99
+  wind_gust: 9.99
+  wind_direction: 1
+  temperature: 9.99
+  start_at: 2017-01-24 15:15:20
+  model_name: MyString
