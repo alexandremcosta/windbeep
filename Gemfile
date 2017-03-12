@@ -59,3 +59,4 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'mocha'
 gem 'sidekiq'
 gem 'whenever', :require => false
+gem 'envyml'
