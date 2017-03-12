@@ -4,4 +4,12 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  scope :with_forecasts, -> (forecasts) { distinct.joins(spots: :spot_forecasts).merge(forecasts) }
+  scope :can_be_notified, -> { where(notified_at: nil).or(notified_before_today) }
+  scope :notified_before_today, -> { where('notified_at < ?', Time.now.beginning_of_day) }
+
+  def self.notify!
+    update_all(notified_at: Time.now)
+  end
 end

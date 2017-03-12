@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124171520) do
+ActiveRecord::Schema.define(version: 20170312144402) do
 
   create_table "spot_forecasts", force: :cascade do |t|
     t.decimal  "wind_speed"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20170124171520) do
     t.string   "model"
     t.datetime "start_at"
     t.integer  "spot_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "notified",       default: false
     t.index ["spot_id"], name: "index_spot_forecasts_on_spot_id"
   end
 
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170124171520) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.datetime "notified_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
