@@ -1,24 +1,13 @@
-# README
+# README [![Build Status](https://travis-ci.org/alexandremcosta/windbeep.svg?branch=master)](https://travis-ci.org/alexandremcosta/windbeep)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Install RVM
+- Install postgres
+- Install redis
+- Clone the project, change to its directory, then run:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+  gem install bundler
+  bundle
+  rails db:setup
+  rails server
+```
