@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   scope :with_forecasts, -> (forecasts) { distinct.joins(spots: :spot_forecasts).merge(forecasts) }
-  scope :can_be_notified, -> { where(notified_at: nil).or(notified_before_today) }
+  scope :can_be_notified, -> { where(notified_at: nil).or(notified_before_today).where(notificable: true) }
   scope :notified_before_today, -> { where('notified_at < ?', Time.now.beginning_of_day) }
 
   def self.notify!
