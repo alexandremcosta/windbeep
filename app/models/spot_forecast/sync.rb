@@ -1,5 +1,6 @@
 module SpotForecast::Sync
   def synchronize(spot_code, entries)
+    entries = Array(entries)
     spot = Spot.includes(:spot_forecasts).find_by_code(spot_code)
     spot_forecasts = build_forecasts(spot, entries)
     spot_forecasts = eligible_to_store(spot_forecasts)

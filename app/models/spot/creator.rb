@@ -5,7 +5,7 @@ class Spot::Creator
 
   validates :user, presence: true
   validates :url, presence: true
-  validates :url, format: { with: Forecast::Config::URLREGEX }
+  validates_format_of :url, with: Forecast::Config::URLREGEX
 
   def save
     if valid?

@@ -3,4 +3,6 @@ class Spot < ApplicationRecord
   has_many :users, through: :user_spots
 
   has_many :spot_forecasts
+
+  validates_size_of :code, is: 6
 end

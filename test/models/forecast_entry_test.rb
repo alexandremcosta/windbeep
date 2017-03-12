@@ -5,14 +5,11 @@ class ForecastEntryTest < ActiveSupport::TestCase
   include ForecastTestHelper
 
   setup do
-    @attrs = { :wind_speed=>6.2, :wind_direction=>131, :wind_gust=>6.3, :temperature=>31.6,
-               :hour=>"15", :day=>"10", :model=>"WRF 12 km", :last_update=>"2017-03-11 15:00:02",
-               :next_update=>"2017-03-11 20:30:00", :initial_date=>"10.03.2017"}
-    @entry = Forecast::Entry.new(@attrs)
+    @entry = Forecast::Entry.new(entry_attributes)
   end
 
   test "define instance methods from attributes" do
-    assert_equal @attrs[:wind_speed], @entry.wind_speed
+    assert_equal entry_attributes[:wind_speed], @entry.wind_speed
   end
 
   test "#attributes should return its attributes" do
