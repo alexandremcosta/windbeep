@@ -54,4 +54,14 @@ Rails.application.configure do
 
   # Custom
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    domain:               'mailgun.org',
+    address:              'smtp.mailgun.org',
+    user_name:            ENV['MAILER_USERNAME'],
+    password:             ENV['MAILER_PASSWORD'],
+    authentication:       'plain',
+    port:                 587,
+    enable_starttls_auto: true
+  }
 end
