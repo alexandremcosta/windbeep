@@ -13,7 +13,7 @@ class User < ApplicationRecord
     update_all(notified_at: Time.now)
   end
 
-  def self.admin?
+  def admin?
     email == ENV['ADMIN_EMAIL']
   end
 end
