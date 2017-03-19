@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :user_spots, only: [:create, :destroy]
   patch "/users", to: "users#update"
   devise_for :users
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end
