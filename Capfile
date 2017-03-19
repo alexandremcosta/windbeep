@@ -7,8 +7,11 @@ require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/puma'
 
-require "capistrano/scm/git"
+require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
+
+require 'whenever/capistrano'
+require 'capistrano/sidekiq'
 
 require 'envyml'
 Envyml.load('./config/env.yml', 'development')

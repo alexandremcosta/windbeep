@@ -6,8 +6,7 @@ class SpotForecast < ApplicationRecord
   scope :in_future, -> { where('spot_forecasts.start_at > ?', Time.now) }
   scope :strong_wind, -> { where('spot_forecasts.wind_speed > 12') }
   scope :notificable, ->{ in_future.where(notified: false).strong_wind }
-
-  default_scope { order(:start_at) }
+  scope :sorted, -> { order(:start_at) }
 
   def self.notify!
     update_all(notified: true)

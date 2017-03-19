@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
     @user = User
       .joins(spots: :spot_forecasts)
       .includes(spots: :spot_forecasts)
-      .merge(SpotForecast.strong_wind)
+      .merge(SpotForecast.strong_wind.sorted)
       .find(user_id)
     mail to: @user.email, subject: "Strong wind alert"
   end

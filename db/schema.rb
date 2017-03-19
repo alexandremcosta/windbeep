@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20170312173059) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.boolean  "notificable",            default: true
     t.datetime "notified_at"
+    t.boolean  "notificable",            default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
