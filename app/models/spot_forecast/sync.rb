@@ -1,7 +1,7 @@
 module SpotForecast::Sync
   def synchronize(spot_code, entries)
     entries = Array(entries)
-    spot = Spot.includes(:spot_forecasts).find_by_code(spot_code)
+    spot = Spot.find_by_code(spot_code)
 
     build_forecasts(spot, entries)
       .select(&:should_update?)

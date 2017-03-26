@@ -32,3 +32,18 @@ class ForecastFilterTest < ActiveSupport::TestCase
   end
 end
 
+class ForecastFilterNameTest < ActiveSupport::TestCase
+  include ForecastTestHelper
+
+
+  test ".filter_name should return spot name" do
+    name = FakeClass.filter_name(forecast_html)
+    assert name
+  end
+
+  test ".filter_name should return nil if not found" do
+    name = FakeClass.filter_name("")
+    refute name
+  end
+end
+

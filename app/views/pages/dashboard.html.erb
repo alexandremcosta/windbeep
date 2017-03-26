@@ -17,9 +17,13 @@
             <% @user_spots.each do |user_spot| %>
               <li class="list-group-item row">
                 <div class="col-10">
-                  <span class="text-muted">windguru.cz/</span>
-                  &nbsp;
-                  <b><%= user_spot.code %></b>
+                  <%= link_to user_spot.url, class: 'text-muted', target: '_blank' do %>
+                    <span class="text-muted">windguru.cz/</span>
+                    &nbsp;
+                    <b><%= user_spot.code %></b>
+                    <br>
+                    <small><%= user_spot.name %></small>
+                  <% end %>
                 </div>
                 <div class="col-2">
                   <%= link_to user_spot_path(user_spot), method: :delete, class: "no-decoration close" do %>

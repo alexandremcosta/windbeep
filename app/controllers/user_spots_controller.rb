@@ -7,6 +7,7 @@ class UserSpotsController < ApplicationController
       flash[:notice] = "Successfully created notification."
       redirect_to dashboard_path
     else
+      flash.now['alert'] = "Invalid spot!"
       render "new"
     end
   end

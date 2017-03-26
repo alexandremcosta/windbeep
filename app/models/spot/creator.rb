@@ -16,7 +16,9 @@ class Spot::Creator
 
   private
   def spot
-    Spot.find_or_initialize_by(code: code)
+    Spot.find_or_initialize_by(code: code).tap do |spot|
+      spot.name = Forecast.find_name(code) unless spot.name
+    end
   end
 
   def code

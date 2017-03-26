@@ -1,6 +1,6 @@
 module Forecast::Config
   MODELNAMEREGEX = /(GFS|WRF)\s*(\d+)\s*KM/i
-  URLREGEX = /windguru\.cz\/(\d{6})/
+  URLREGEX = /windguru\.cz\/(\d{2,6})/
 
   DAILYKEYS = {
     "WINDSPD" => :wind_speed,

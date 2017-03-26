@@ -11,6 +11,11 @@ module Forecast::Filter
     most_accurate(tabs) || Hash.new
   end
 
+  def filter_name(html)
+    sample_tab = find_js_data(html).first || "{}"
+    parse(sample_tab)['spot']
+  end
+
   private
   def find_js_data(html)
     str  = String(html)

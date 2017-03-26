@@ -4,7 +4,8 @@ class Spot < ApplicationRecord
 
   has_many :spot_forecasts
 
-  validates_size_of :code, is: 6
+  validates_length_of :code, in: 2..6
+  validates_presence_of :name
 
   def url
     "http://windguru.cz/#{code}"

@@ -5,6 +5,6 @@ class UserSpot < ApplicationRecord
 
   validates_presence_of :user, :spot
   accepts_nested_attributes_for :spot
-  delegate :code, to: :spot
+  delegate :code, :name, :url, to: :spot
 end
 

@@ -20,6 +20,8 @@
     .list-group-item {
       padding: 10px;
       margin-left: 2px;
+      min-height: 70px;
+      a:hover { text-decoration: none }
     }
   }
 

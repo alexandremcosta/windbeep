@@ -2,20 +2,21 @@
 
 <% @user.spots.each do |spot| %>
   <% if spot.spot_forecasts.any? %>
-    <p><%= link_to spot.url, spot.url %></p>
-
-    <table>
-      <th colspan='2'><%= spot.spot_forecasts.first.model %></th>
-      <th>knots</th>
-      <th>direction</th>
-      <% spot.spot_forecasts.each do |forecast| %>
-        <tr>
-          <td><%= forecast.start_at.strftime("%A, %-d") %></td>
-          <td><%= forecast.start_at.strftime("%l %P") %></td>
-          <td><%= forecast.wind_speed %></td>
-          <td><%= forecast.wind_direction_word %></td>
-        </tr>
-      <% end %>
-    </table>
+    <p>
+      <%= link_to spot.name, spot.url %>
+      (<%= spot.spot_forecasts.first.model %>)
+    </p>
+    <% spot.spot_forecasts.group_by{|f| f.start_at.to_date}.each do |date, forecasts| %>
+      <table>
+        <th><%= date.strftime("%A, %-d") %></th>
+        <% forecasts.each do |forecast| %>
+          <tr>
+            <td><%= forecast.start_at.strftime("%l %P") %></td>
+            <td><%= forecast.wind_speed %></td>
+            <td><%= forecast.wind_direction_word %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
   <% end %>
 <% end %>

@@ -11,4 +11,9 @@ module Forecast
       Forecast::Entry.new(attrs)
     end
   end
+
+  def self.find_name(spot_code)
+    html = open("https://www.windguru.cz/" + spot_code).read
+    filter_name(html)
+  end
 end
