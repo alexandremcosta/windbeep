@@ -3,13 +3,13 @@ module User::Notifier
     forecasts = SpotForecast.notificable
     users = User.with_forecasts(forecasts).can_be_notified
 
-    users.find_each do |user|
+    users.each do |user|
       UserMailer.strong_wind(user.id).deliver_later
     end
 
     ActiveRecord::Base.transaction do
-      forecasts.notify!
       users.notify!
+      forecasts.notify!
     end
   end
 end
