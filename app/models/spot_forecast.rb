@@ -1,5 +1,6 @@
 class SpotForecast < ApplicationRecord
   extend SpotForecast::Sync
+  include SpotForecast::Direction
 
   belongs_to :spot
 
@@ -13,24 +14,14 @@ class SpotForecast < ApplicationRecord
   end
 
   def wind_direction_word
-    if wind_direction < 22.5
-      'N'
-    elsif wind_direction < 67.5
-      'NE'
-    elsif wind_direction < 112.5
-      'E'
-    elsif wind_direction < 157.5
-      'SE'
-    elsif wind_direction < 202.5
-      'S'
-    elsif wind_direction < 247.5
-      'SW'
-    elsif wind_direction < 292.5
-      'W'
-    elsif wind_direction < 337.7
-      'NW'
+    direction_word
+  end
+
+  def should_update?
+    if persisted?
+      attribute_changed?(:wind_speed)
     else
-      'N'
+      wind_speed > 10
     end
   end
 end

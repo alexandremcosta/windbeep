@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  wind_speed: 9.99
-  wind_gust: 9.99
+notificable:
+  wind_speed: 20
+  wind_gust: 30
   wind_direction: 1
-  temperature: 9.99
-  start_at: 2017-01-24 15:15:20
-  model: MyString
+  temperature: 10
+  start_at: <%= 10.hours.from_now %>
+  model: WRF
+  spot: valid
 
-two:
-  wind_speed: 9.99
-  wind_gust: 9.99
+not_notificable:
+  wind_speed: 10
+  wind_gust: 10
   wind_direction: 1
-  temperature: 9.99
-  start_at: 2017-01-24 15:15:20
-  model: MyString
+  temperature: 10
+  start_at: <%= 10.hours.ago %>
+  model: GFS
+  spot: valid
