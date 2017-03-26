@@ -2,6 +2,8 @@
 lock "3.8.0"
 
 set :repo_url,        'git@github.com:alexandremcosta/windbeep.git'
+set :branch, 'master'
+
 set :application,     'windbeep'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
@@ -23,13 +25,6 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 set :sidekiq_queue, [:default, :mailers]
 
-## Defaults:
-# set :scm,           :git
-# set :branch,        :master
-# set :format,        :pretty
-# set :log_level,     :debug
-# set :keep_releases, 5
-
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/env.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -50,8 +45,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
+      unless `git rev-parse HEAD` == `git rev-parse origin/#{fetch(:branch)}`
+        puts "WARNING: HEAD is not the same as origin/#{fetch(:branch)}"
         puts "Run `git push` to sync changes."
         exit
       end
