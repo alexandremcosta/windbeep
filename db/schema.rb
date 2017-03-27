@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326205312) do
+ActiveRecord::Schema.define(version: 20170327012320) do
 
   create_table "spot_forecasts", force: :cascade do |t|
     t.decimal  "wind_speed"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170326205312) do
     t.datetime "updated_at",                     null: false
     t.boolean  "notified",       default: false
     t.index ["spot_id"], name: "index_spot_forecasts_on_spot_id"
+    t.index ["start_at", "spot_id"], name: "index_spot_forecasts_on_start_at_and_spot_id", unique: true
   end
 
   create_table "spots", force: :cascade do |t|
